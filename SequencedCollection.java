@@ -1,26 +1,51 @@
-/**
- * SequenceCollection
- */
-public class SequencedCollection {
+import java.util.ArrayList;
 
-    // Assume SequencedCollection is an interface in Java 21
-    // and we have an implementation of it
+public class SequencedCollection<T> {
+    private ArrayList<T> collection;
 
-    // Creating a SequencedCollection of integers
-    SequencedCollection<Integer> numbers = new SequencedCollectionImplementation<>();numbers.add(1);numbers.add(2);numbers.add(3);numbers.add(4);
-
-    // Accessing the first and last elements
-    Integer firstElement = numbers.getFirst();
-    Integer lastElement = numbers.getLast();
-
-    // Reversing the collection
-SequencedCollection<Integer> reversedNumbers = numbers.reversed();
-
-    // Iterating over the reversed collection
-    for(
-    Integer num:reversedNumbers)
-    {
-        System.out.println(num);
+    public SequencedCollection() {
+        this.collection = new ArrayList<>();
     }
 
+    public void add(T element) {
+        this.collection.add(element);
+    }
+
+    public T getFirst() {
+        if (!this.collection.isEmpty()) {
+            return this.collection.get(0);
+        }
+        return null;
+    }
+
+    public T getLast() {
+        if (!this.collection.isEmpty()) {
+            return this.collection.get(this.collection.size() - 1);
+        }
+        return null;
+    }
+
+    public SequencedCollection<T> reversed() {
+        SequencedCollection<T> reversedCollection = new SequencedCollection<>();
+        for (int i = this.collection.size() - 1; i >= 0; i--) {
+            reversedCollection.add(this.collection.get(i));
+        }
+        return reversedCollection;
+    }
+
+    public static void main(String[] args) {
+        SequencedCollection<Integer> collection = new SequencedCollection<>();
+        collection.add(1);
+        collection.add(2);
+        collection.add(3);
+        collection.add(4);
+        collection.add(5);
+
+        System.out.println(collection.getFirst());
+        System.out.println(collection.getLast());
+
+        SequencedCollection<Integer> reversedCollection = collection.reversed();
+        System.out.println(reversedCollection.getFirst());
+        System.out.println(reversedCollection.getLast());
+    }
 }
