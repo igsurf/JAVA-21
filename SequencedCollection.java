@@ -1,5 +1,7 @@
 import java.util.ArrayList;
 
+
+//JEP 431
 public class SequencedCollection<T> {
     private ArrayList<T> collection;
 
